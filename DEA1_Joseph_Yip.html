@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Shijo Joseph &amp; Douglas Yip" />
+
+
+<title>DEA 1 - Budweiser</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">AboutMe</a>
+</li>
+<li>
+  <a href="DEA1_Joseph_Yip.html">BeerEDA</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">DEA 1 - Budweiser</h1>
+<h4 class="author">Shijo Joseph &amp; Douglas Yip</h4>
+<h4 class="date">10/6/2021</h4>
+
+</div>
+
+
+<div id="budweiser" class="section level1">
+<h1>Budweiser</h1>
+<div id="executive-summary" class="section level2">
+<h2>Executive Summary</h2>
+<p>The purpose of this review is to provide you an overview of the beer and brewery landscape and provide you a method with identifying white space opportunities based on ABV and IBU<br />
+Our insights that we are sharing are based on the ABV and IBU content by State. Our review recommends that the following opportuntities that your company should consider. The opportunity exsit to explore the US Southeast region as a result of the low beer sku count beer per 100,000 capita. In addition, we can customize the style of beer based on our ABV/IBU heat map tool for your marketing team to incorporate in their innovation plan.</p>
+<pre class="r"><code>#uploads the data into R to start analysis from Github
+
+Breweries &lt;- read_csv(&quot;https://raw.githubusercontent.com/sajoseph-smu/Case-Study-1---Budwieser/main/Breweries.csv&quot;, show_col_types = FALSE) 
+
+summary(Breweries)</code></pre>
+<pre><code>##     Brew_ID          Name               City              State          
+##  Min.   :  1.0   Length:558         Length:558         Length:558        
+##  1st Qu.:140.2   Class :character   Class :character   Class :character  
+##  Median :279.5   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   :279.5                                                           
+##  3rd Qu.:418.8                                                           
+##  Max.   :558.0</code></pre>
+<pre class="r"><code>Beers &lt;- read_csv(&quot;https://raw.githubusercontent.com/sajoseph-smu/Case-Study-1---Budwieser/main/Beers.csv&quot;, show_col_types = FALSE)
+summary(Beers)</code></pre>
+<pre><code>##      Name              Beer_ID            ABV               IBU           Brewery_id   
+##  Length:2410        Min.   :   1.0   Min.   :0.00100   Min.   :  4.00   Min.   :  1.0  
+##  Class :character   1st Qu.: 808.2   1st Qu.:0.05000   1st Qu.: 21.00   1st Qu.: 94.0  
+##  Mode  :character   Median :1453.5   Median :0.05600   Median : 35.00   Median :206.0  
+##                     Mean   :1431.1   Mean   :0.05977   Mean   : 42.71   Mean   :232.7  
+##                     3rd Qu.:2075.8   3rd Qu.:0.06700   3rd Qu.: 64.00   3rd Qu.:367.0  
+##                     Max.   :2692.0   Max.   :0.12800   Max.   :138.00   Max.   :558.0  
+##                                      NA&#39;s   :62        NA&#39;s   :1005                    
+##     Style               Ounces     
+##  Length:2410        Min.   : 8.40  
+##  Class :character   1st Qu.:12.00  
+##  Mode  :character   Median :12.00  
+##                     Mean   :13.59  
+##                     3rd Qu.:16.00  
+##                     Max.   :32.00  
+## </code></pre>
+<div id="how-many-breweries-are-present-in-each-state" class="section level3">
+<h3>1. How many breweries are present in each state?</h3>
+<pre class="r"><code>#This code will identify the number of breweries for each state
+#How many Breweries are in each state?
+
+SummaryBrewery &lt;- Breweries %&gt;% count(State, sort = TRUE)
+names(SummaryBrewery)[2] &lt;- &quot;Brewery_Count&quot;
+#Summary of Breweries 
+SummaryBrewery</code></pre>
+<pre><code>## # A tibble: 51 x 2
+##    State Brewery_Count
+##    &lt;chr&gt;         &lt;int&gt;
+##  1 CO               47
+##  2 CA               39
+##  3 MI               32
+##  4 OR               29
+##  5 TX               28
+##  6 PA               25
+##  7 MA               23
+##  8 WA               23
+##  9 IN               22
+## 10 WI               20
+## # ... with 41 more rows</code></pre>
+<pre class="r"><code># Top 25 States with Most Breweries
+
+
+top_n(SummaryBrewery,25,Brewery_Count) %&gt;% ggplot(mapping = aes(x = reorder(State,-Brewery_Count), y = Brewery_Count, fill = State)) + geom_bar(stat = &#39;identity&#39;) + ggtitle(&quot;Top 25 States by Brewery Count&quot;) + xlab(&quot;States&quot;) + ylab(&quot;Brewery Count&quot;) +geom_text(aes(label = format(Brewery_Count,big.mark =&#39;,&#39;)), position = position_dodge(width = .9), vjust = -.25)</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code># Bottom 25 States with Most Breweries
+
+
+top_n(SummaryBrewery,25,-Brewery_Count) %&gt;% ggplot(mapping = aes(x = reorder(State,Brewery_Count), y = Brewery_Count, fill = State)) + geom_bar(stat = &#39;identity&#39;) + ggtitle(&quot;Bottom 25 States by Brewery Count&quot;) + xlab(&quot;States&quot;) + ylab(&quot;Brewery Count&quot;) +geom_text(aes(label = format(Brewery_Count,big.mark =&#39;,&#39;)), position = position_dodge(width = .9), vjust = -.25)</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+</div>
+<div id="answer.-brewery-barchart-graphically-depicts-the-count-by-each-state.-colorado-with-the-most-at-47-breweries-and-4-other-states-with-1-brewery." class="section level3">
+<h3>1 Answer. Brewery Barchart graphically depicts the count by each state. Colorado with the most at 47 Breweries and 4 other states with 1 Brewery.</h3>
+</div>
+<div id="merge-beer-data-with-the-breweries-data.-print-the-first-6-observations-and-the-last-six-observations-to-check-the-merged-file." class="section level3">
+<h3>2. Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file.</h3>
+<pre class="r"><code>#This code will merge the Data with assigning each beer with the brewery and location
+
+#Merge Data
+#outer join (keep all observations from both dataframes)
+names(Beers)[5] &lt;- &quot;Brew_ID&quot;
+names(Breweries)[2] &lt;- &quot;Brewery_Name&quot;
+bbdf &lt;- merge(Beers,Breweries, by = &quot;Brew_ID&quot;)
+
+#Head
+bbdf %&gt;% head(6)</code></pre>
+<pre><code>##   Brew_ID          Name Beer_ID   ABV IBU                               Style Ounces
+## 1       1  Get Together    2692 0.045  50                        American IPA     16
+## 2       1 Maggie&#39;s Leap    2691 0.049  26                  Milk / Sweet Stout     16
+## 3       1    Wall&#39;s End    2690 0.048  19                   English Brown Ale     16
+## 4       1       Pumpion    2689 0.060  38                         Pumpkin Ale     16
+## 5       1    Stronghold    2688 0.060  25                     American Porter     16
+## 6       1   Parapet ESB    2687 0.056  47 Extra Special / Strong Bitter (ESB)     16
+##        Brewery_Name        City State
+## 1 NorthGate Brewing Minneapolis    MN
+## 2 NorthGate Brewing Minneapolis    MN
+## 3 NorthGate Brewing Minneapolis    MN
+## 4 NorthGate Brewing Minneapolis    MN
+## 5 NorthGate Brewing Minneapolis    MN
+## 6 NorthGate Brewing Minneapolis    MN</code></pre>
+<pre class="r"><code>#tail
+bbdf %&gt;% tail(6)</code></pre>
+<pre><code>##      Brew_ID                      Name Beer_ID   ABV IBU                   Style Ounces
+## 2405     556             Pilsner Ukiah      98 0.055  NA         German Pilsener     12
+## 2406     557  Heinnieweisse Weissebier      52 0.049  NA              Hefeweizen     12
+## 2407     557           Snapperhead IPA      51 0.068  NA            American IPA     12
+## 2408     557         Moo Thunder Stout      50 0.049  NA      Milk / Sweet Stout     12
+## 2409     557         Porkslap Pale Ale      49 0.043  NA American Pale Ale (APA)     12
+## 2410     558 Urban Wilderness Pale Ale      30 0.049  NA        English Pale Ale     12
+##                       Brewery_Name          City State
+## 2405         Ukiah Brewing Company         Ukiah    CA
+## 2406       Butternuts Beer and Ale Garrattsville    NY
+## 2407       Butternuts Beer and Ale Garrattsville    NY
+## 2408       Butternuts Beer and Ale Garrattsville    NY
+## 2409       Butternuts Beer and Ale Garrattsville    NY
+## 2410 Sleeping Lady Brewing Company     Anchorage    AK</code></pre>
+</div>
+<div id="answer.-first-and-last-6-observations-of-the-merged-file-shows-the-observations-that-are-required-for-the-question.-table-listed-above." class="section level3">
+<h3>2 Answer. First and last 6 observations of the merged file shows the observations that are required for the question. Table listed above.</h3>
+</div>
+<div id="address-the-missing-values-in-each-column." class="section level3">
+<h3>3. Address the missing values in each column.</h3>
+<pre class="r"><code>#Cleanse data
+#We chose to omit the NA records as a method to clean the data
+bbdf_clean = na.omit(bbdf)</code></pre>
+</div>
+<div id="answer.-there-are-1005-lines-of-the-2410-that-have-missing-values.-original-thought-was-to-create-a-regression-to-fill-in-the-missing-values-for-ibu-and-abv.-however-since-we-are-missing-40-of-the-data-it-didnt-make-sense-to-regress-that-many-values-and-feared-the-outcome-will-skew-the-analysis-incorrectly.-as-such-we-omitted-the-lines-with-missing-data-to-focus-on-the-1405-lines-that-have-complete-columns" class="section level3">
+<h3>3 Answer. There are 1005 lines of the 2410 that have missing values. Original thought was to create a regression to fill in the missing values for IBU and ABV. However since we are missing ~40% of the data, it didn’t make sense to regress that many values and feared the outcome will skew the analysis incorrectly. As such, we omitted the lines with missing data to focus on the 1405 lines that have complete columns</h3>
+</div>
+<div id="compute-the-median-alcohol-content-and-international-bitterness-unit-for-each-state.-plot-a-bar-chart-to-compare." class="section level3">
+<h3>4. Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.</h3>
+<pre class="r"><code>#This code will create a table of Medians for ABV and IBU for each state and graphically display a bar chart 
+
+
+# created a clean table with stats for ABV and IBU
+bbdf_clean_stats = bbdf_clean %&gt;% group_by(State) %&gt;% summarise(Mean_ABV=mean(ABV), Max_ABV=max(ABV), Min_ABV=min(ABV), Median_ABV=median(ABV), Std_ABV=sd(ABV),Mean_IBU=mean(IBU), Max_IBU=max(IBU), Min_IBU=min(IBU), Median_IBU=median(IBU), Std_IBU=sd(IBU))
+
+# Clean table with Medians for ABV and IBU
+bbdf_clean_Medians = bbdf_clean_stats %&gt;% select(State, Median_ABV, Median_IBU)
+bbdf_clean_Medians</code></pre>
+<pre><code>## # A tibble: 50 x 3
+##    State Median_ABV Median_IBU
+##    &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+##  1 AK         0.057       46  
+##  2 AL         0.06        43  
+##  3 AR         0.04        39  
+##  4 AZ         0.055       20  
+##  5 CA         0.058       42  
+##  6 CO         0.065       40  
+##  7 CT         0.061       29  
+##  8 DC         0.059       47.5
+##  9 DE         0.055       52  
+## 10 FL         0.062       55  
+## # ... with 40 more rows</code></pre>
+<pre class="r"><code># Top 25 States by Median ABV
+top_n(bbdf_clean_Medians,25,Median_ABV) %&gt;% ggplot(mapping = aes(x = reorder(State,Median_ABV), y = Median_ABV, fill = State)) + geom_bar(stat = &#39;identity&#39;) + ggtitle(&quot;Top 25 States by Median ABV&quot;) + xlab(&quot;States&quot;) + ylab(&quot;ABV&quot;) +ylim(0,.08) +geom_text(aes(label = format(Median_ABV,big.mark =&#39;,&#39;)), position = position_dodge(width = .6), hjust = -.25) + coord_flip()</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code># Bottom 25 States by Median ABV
+top_n(bbdf_clean_Medians,25,-Median_ABV) %&gt;% ggplot(mapping = aes(x = reorder(State,-Median_ABV), y = Median_ABV, fill = State)) + geom_bar(stat = &#39;identity&#39;) + ggtitle(&quot;Bottom 25 States by Median ABV&quot;) + xlab(&quot;States&quot;) + ylab(&quot;ABV&quot;) +ylim(0,.08) +geom_text(aes(label = format(Median_ABV,big.mark =&#39;,&#39;)), position = position_dodge(width = .6), hjust = -.25) + coord_flip()</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code># Top 25 States by Median IBU
+top_n(bbdf_clean_Medians,25,Median_IBU) %&gt;%  ggplot(mapping = aes(x = reorder(State,Median_IBU), y = Median_IBU, fill = State)) + geom_bar(stat = &#39;identity&#39;) + ggtitle(&quot;Top 25 States by Median IBU&quot;) + xlab(&quot;States&quot;) + ylab(&quot;IBU&quot;) +ylim(0,70) +geom_text(aes(label = format(Median_IBU,big.mark =&#39;,&#39;)), position = position_dodge(width = .6), hjust = -.25) + coord_flip()</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<pre class="r"><code># Bottom 25 States by Median IBU
+top_n(bbdf_clean_Medians,25,-Median_IBU) %&gt;% ggplot(mapping = aes(x = reorder(State,-Median_IBU), y = Median_IBU, fill = State)) + geom_bar(stat = &#39;identity&#39;) + ggtitle(&quot;Bottom 25 States by Median IBU&quot;) + xlab(&quot;States&quot;) + ylab(&quot;IBU&quot;) +ylim(0,70) +geom_text(aes(label = format(Median_IBU,big.mark =&#39;,&#39;)), position = position_dodge(width = .6), hjust = -.25) + coord_flip()</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
+</div>
+<div id="answer.-the-bar-charts-above-visually-depicts-the-top-25-and-bottom-25-states-for-median-abv-and-ibu." class="section level3">
+<h3>4 Answer. The bar charts above visually depicts the Top 25 and bottom 25 states for median ABV and IBU.</h3>
+</div>
+<div id="which-state-has-the-maximum-alcoholic-abv-beer-which-state-has-the-most-bitter-ibu-beer" class="section level3">
+<h3>5. Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?</h3>
+<pre class="r"><code>#This code will identify which State has the highest ABV and IBU beers.
+
+
+# State with the max ABV
+bbdf_clean %&gt;% filter(ABV == max(ABV))</code></pre>
+<pre><code>##   Brew_ID           Name Beer_ID   ABV IBU              Style Ounces              Brewery_Name
+## 1       2 London Balling    2685 0.125  80 English Barleywine     16 Against the Grain Brewery
+##         City State
+## 1 Louisville    KY</code></pre>
+<pre class="r"><code>#State with the max IBU
+bbdf_clean %&gt;% filter(IBU == max(IBU))</code></pre>
+<pre><code>##   Brew_ID                      Name Beer_ID   ABV IBU                          Style Ounces
+## 1     375 Bitter Bitch Imperial IPA     980 0.082 138 American Double / Imperial IPA     12
+##              Brewery_Name    City State
+## 1 Astoria Brewing Company Astoria    OR</code></pre>
+</div>
+<div id="answer.-kentucky-has-the-max-abv-of-.125-based-on-london-balling-from-the-against-the-grain-brewery.-oregon-has-the-max-ibu-of-138-based-on-the-bitter-bitch-imperial-ipa-from-the-astoria-brewing-company." class="section level3">
+<h3>5 Answer. Kentucky has the Max ABV of .125 based on London Balling from the Against the Grain Brewery. Oregon has the Max IBU of 138 based on the Bitter Bitch Imperial IPA from the Astoria Brewing Company.</h3>
+</div>
+<div id="comment-on-the-summary-statistics-and-distribution-of-the-abv-variable." class="section level3">
+<h3>6.Comment on the summary statistics and distribution of the ABV variable.</h3>
+<pre class="r"><code>#This code will create a summary statistic of the ABV variable
+
+# already have that in the bbdf_clean_stats 
+
+# created a clean table with stats for ABV 
+bbdf_clean_stats = bbdf_clean %&gt;% group_by(State) %&gt;% summarise(Mean_ABV=mean(ABV), Max_ABV=max(ABV), Min_ABV=min(ABV), Median_ABV=median(ABV), Std_ABV=sd(ABV))
+bbdf_clean %&gt;% ggplot(aes(x=ABV)) + geom_histogram() + labs(title = &quot;Histogram of Beers ABV&quot;)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>bbdf_clean %&gt;% ggplot(aes(x=ABV)) + geom_boxplot() + labs(title = &quot;Boxplot of Beers ABV&quot;)</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<pre class="r"><code>#summary statistics of ABV 
+summary(bbdf_clean$ABV)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.02700 0.05000 0.05700 0.05992 0.06800 0.12500</code></pre>
+</div>
+<div id="answer.-the-abv-distribution-showed-a-right-skewed-distribution-with-a-mean-at-6-and-median-at-5.7.-most-of-the-beers-abv-ranged-between-5-to-6.8-iqr." class="section level3">
+<h3>6 Answer. The ABV distribution showed a right skewed distribution with a mean at 6% and median at 5.7%. Most of the beers ABV ranged between 5% to 6.8% (IQR).</h3>
+</div>
+<div id="is-there-an-apparent-relationship-between-the-bitterness-of-the-beer-and-its-alcoholic-content-draw-a-scatter-plot.-make-your-best-judgment-of-a-relationship-and-explain-your-answer" class="section level3">
+<h3>7. Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot. Make your best judgment of a relationship and EXPLAIN your answer</h3>
+<pre class="r"><code># Scatter Plot code to show the relationship between ABV and IBU
+
+bbdf_clean %&gt;% ggplot(mapping = aes(x = ABV, y = IBU)) + geom_point(mapping = aes(x = ABV, y = IBU, color = State), position = &quot;jitter&quot;) +  geom_smooth(method=&#39;lm&#39;, formula= y~x) + ggtitle(&quot;ABV vs IBU&quot;) + xlab(&quot;ABV&quot;) + ylab(&quot;IBU&quot;) </code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="answer.-the-ibu-and-abv-are-highly-correlated-based-on-the-linear-model-of-the-data-set.-the-hoppier-the-beer-the-higher-the-abv." class="section level3">
+<h3>7 Answer. The (IBU) and ABV are highly correlated based on the linear model of the data set. The hoppier the beer the higher the ABV.</h3>
+</div>
+<div id="budweiser-would-also-like-to-investigate-the-difference-with-respect-to-ibu-and-abv-between-ipas-india-pale-ales-and-other-types-of-ale-any-beer-with-ale-in-its-name-other-than-ipa.-you-decide-to-use-knn-classification-to-investigate-this-relationship.-provide-statistical-evidence-one-way-or-the-other.-you-can-of-course-assume-your-audience-is-comfortable-with-percentages-knn-is-very-easy-to-understand-conceptually." class="section level3">
+<h3>8. Budweiser would also like to investigate the difference with respect to IBU and ABV between IPAs (India Pale Ales) and other types of Ale (any beer with “Ale” in its name other than IPA). You decide to use KNN classification to investigate this relationship. Provide statistical evidence one way or the other. You can of course assume your audience is comfortable with percentages … KNN is very easy to understand conceptually.</h3>
+<pre class="r"><code># Code to building the Ales and IPA data frame and creating a flag for OtherAles and IPA 
+
+bbdf_Ales = bbdf_clean %&gt;% filter(str_detect(Style,&quot;(IPA| Ale)&quot;))
+
+bbdf_Ales = bbdf_Ales %&gt;% mutate(IPAFlag = case_when(str_detect(bbdf_Ales$Style,&quot;IPA&quot;) == TRUE ~ &quot;IPA&quot;, TRUE ~ &quot;Other Ales&quot; ))
+
+bbdf_Ales$IPAFlag = as.factor(bbdf_Ales$IPAFlag)
+
+# Code to find the best K that achieves at least 80% Accruacy
+set.seed(1)
+iterations = 100
+numks = 15
+splitPerc = .70
+
+masterAcc = matrix(nrow = iterations, ncol = numks)
+
+for(j in 1:iterations)
+{
+  trainIndices = sample(1:dim(bbdf_Ales)[1],round(splitPerc * dim(bbdf_Ales)[1]))
+  train = bbdf_Ales[trainIndices,]
+  test = bbdf_Ales[-trainIndices,]
+  for(i in 1:numks)
+  {
+    classifications = knn(train[,c(4,5)],test[,c(4,5)],train$IPAFlag, prob = TRUE, k = i)
+    CM = confusionMatrix(table(classifications,test$IPAFlag))
+    masterAcc[j,i] = CM$overall[1]
+  }
+  
+}
+
+MeanAcc = colMeans(masterAcc)
+
+
+# find out the best K and accuracy  and plot it
+which.max(MeanAcc)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>max(MeanAcc)</code></pre>
+<pre><code>## [1] 0.8567845</code></pre>
+<pre class="r"><code>plot(seq(1,numks,1),MeanAcc, type = &quot;l&quot;)
+abline(v = 5, col = &#39;green&#39;)
+abline(h = .8589, col = &#39;green&#39;)</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code># run the knn with the best K
+# K = 5
+
+    classifications = knn(train[,c(4,5)],test[,c(4,5)],train$IPAFlag, prob = TRUE, k = 5)
+    CM = confusionMatrix(table(classifications,test$IPAFlag))
+    CM</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##                
+## classifications IPA Other Ales
+##      IPA         92         13
+##      Other Ales  29        149
+##                                           
+##                Accuracy : 0.8516          
+##                  95% CI : (0.8047, 0.8909)
+##     No Information Rate : 0.5724          
+##     P-Value [Acc &gt; NIR] : &lt; 2e-16         
+##                                           
+##                   Kappa : 0.6917          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.02064         
+##                                           
+##             Sensitivity : 0.7603          
+##             Specificity : 0.9198          
+##          Pos Pred Value : 0.8762          
+##          Neg Pred Value : 0.8371          
+##              Prevalence : 0.4276          
+##          Detection Rate : 0.3251          
+##    Detection Prevalence : 0.3710          
+##       Balanced Accuracy : 0.8400          
+##                                           
+##        &#39;Positive&#39; Class : IPA             
+## </code></pre>
+</div>
+<div id="answer.-before-completing-the-knn-we-identify-the-best-knn-to-run-to-acieved-a-80-accruacy.-we-identified-knn-5.-we-split-the-data-7030-to-create-a-train-and-test-dataset-to-complete-a-knn5-analysis.-the-accruacy-of-the-results-was-85.67.-this-would-suggest-the-the-sytle-of-the-ales-are-highly-dependent-on-the-abv-and-ibu-classification-since-we-got-a-accruacy-rate-of-85.67." class="section level3">
+<h3>8 Answer. Before completing the KNN, we identify the best knn to run to acieved a 80% accruacy. We identified knn =5. We split the data 70/30 to create a train and test dataset to complete a knn=5 analysis. The accruacy of the results was ~85.67%. This would suggest the the sytle of the Ales are highly dependent on the ABV and IBU classification since we got a accruacy rate of 85.67%.</h3>
+</div>
+<div id="knock-their-socks-off-find-one-other-useful-inference-from-the-data-that-you-feel-budweiser-may-be-able-to-find-value-in.-you-must-convince-them-why-it-is-important-and-back-up-your-conviction-with-appropriate-statistical-evidence." class="section level3">
+<h3>9. Knock their socks off! Find one other useful inference from the data that you feel Budweiser may be able to find value in. You must convince them why it is important and back up your conviction with appropriate statistical evidence.</h3>
+<pre class="r"><code># creating a map plot of the counts of IPA&#39;s and Other Ales 
+library(ggplot2)
+library(maps)
+library(dplyr)
+library(mapproj)
+#install.packages(&quot;tidycensus&quot;)
+library(tidycensus)
+
+
+## Run the below code if your are changing the census key
+##census_api_key(&quot;60e6bde9f7a79e136e60fbbb59ce47e85938deb5&quot;, install = TRUE)
+##readRenviron(&quot;~/.Renviron&quot;)
+
+
+
+
+
+
+lookup = data.frame(abb = state.abb, State = state.name)
+bbdf_map = merge(bbdf, lookup, by.x = &quot;State&quot;, by.y = &quot;abb&quot;)
+bbdf_map</code></pre>
+<pre><code>##    State Brew_ID                                  Name Beer_ID   ABV IBU
+## 1     AK     494                        Polar Pale Ale     920 0.052  17
+## 2     AK     103                       King Street IPA    1667 0.060  70
+## 3     AK     454                     Single Engine Red     929 0.058  46
+## 4     AK     459            Skilak Scottish Ale (2011)     348 0.058  NA
+## 5     AK     103                   King Street Pilsner    1706 0.055  NA
+## 6     AK     224                     Pleasure Town IPA    1814 0.063  61
+## 7     AK     224                       Sockeye Red IPA     434 0.057  70
+## 8     AK     271                         Alaskan Amber    1920 0.053  18
+## 9     AK     224                    Snowshoe White Ale     587 0.048  12
+## 10    AK     494                       Fairweather IPA     648 0.061  64
+## 11    AK     494                   Chugach Session Ale     919 0.048  NA
+## 12    AK     103                             Amber Ale    2436 0.051  NA
+## 13    AK     271                          Freeride APA    1921 0.053  40
+## 14    AK     224                      Kodiak Brown Ale     586 0.050  24
+## 15    AK     224                         Pleasure Town    2093 0.063  61
+## 16    AK     459                     Sunken Island IPA     349 0.068  NA
+## 17    AK     558             Urban Wilderness Pale Ale      30 0.049  NA
+## 18    AK     454                           Chuli Stout    1213 0.059  55
+## 19    AK     459                   Skilak Scottish Ale    1193 0.058  NA
+## 20    AK     494             Northern Lights Amber Ale     921 0.050  15
+## 21    AK     459       Peninsula Brewers Reserve (PBR)    1187 0.050  15
+## 22    AK     103                King Street Hefeweizen    1666 0.057  10
+## 23    AK     454          Twister Creek India Pale Ale     947 0.065  71
+## 24    AK     103                King Street Blonde Ale    1665 0.049  NA
+## 25    AK     454                            Mother Ale    1159 0.056  46
+## 26    AL     413                        Monkeynaut IPA     637 0.072  70
+## 27    AL     287                    Naked Pig Pale Ale    1875 0.060  43
+## 28    AL     413                 Lily Flagg Milk Stout     925 0.050  30
+## 29    AL     287            Truck Stop Honey Brown Ale    1876 0.060  NA
+## 30    AL     479        Good People American Brown Ale     308 0.058  36
+## 31    AL     479                       Good People IPA     309 0.060  64
+## 32    AL     479                  Coffee Oatmeal Stout     311 0.060  54
+## 33    AL     479                  Good People Pale Ale    1000 0.056  36
+## 34    AL     413                Sand Island Lighthouse    1410 0.051  25
+## 35    AL     479              Snake Handler Double IPA     312 0.093 103
+## 36    AR     260               Ozark American Pale Ale    1961 0.040  39
+## 37    AR     140                              Core ESB    1336 0.061  NA
+## 38    AR     140                          Arkansas Red    1650 0.052  NA
+## 39    AR     140                    Core Oatmeal Stout    1337 0.057  NA
+## 40    AR     140                              Behemoth    2351 0.050  NA
+## 41    AZ      31                         Mr. Pineapple     777 0.050  20
+## 42    AZ      31                           Devil’s Ale     850 0.055  45
+## 43    AZ      31            Epicenter Amber Ale (2010)     124 0.055  20
+## 44    AZ      31                    Sex Panther (2014)     852 0.069  20
+## 45    AZ      31        Rail Slide Imperial Spiced Ale     839 0.081  NA
+## 46    AZ     158                             Camelback    2312 0.061  60
+## 47    AZ     549                         Ponderosa IPA     335    NA  NA
+## 48    AZ      31                           Sex Panther    2599 0.069  20
+## 49    AZ      31                  Hop Shock IPA (2010)     317 0.070  85
+## 50    AZ      31                         Hop Shock IPA    1071 0.070  85
+## 51    AZ     550                      Wapiti Amber Ale     327 0.050  NA
+## 52    AZ      31                     SanTan HefeWeizen    1072 0.050  15
+## 53    AZ      31                   Epicenter Amber Ale    1073 0.055  20
+## 54    AZ      31                      Supermonk I.P.A.    1299 0.065  NA
+## 55    AZ     252                         Barrio Blanco    2005 0.060  60
+## 56    AZ     161                         Sunbru Kölsch     178 0.052  NA
+## 57    AZ     252                  Barrio Tucson Blonde    1343 0.045  NA
+## 58    AZ     161        Kilt Lifter Scottish-Style Ale    1635 0.060  21
+## 59    AZ     508            Dry Heat Hefeweizen (2006)     131 0.055  NA
+## 60    AZ     159                           Knotty Pine    2311 0.054  NA
+## 61    AZ     537         Grand Canyon American Pilsner     476 0.052  NA
+## 62    AZ     232                           Noche Dulce    2062 0.071  16
+## 63    AZ     161 Kilt Lifter Scottish-Style Ale (2009)     179 0.060  21
+## 64    AZ     537                     White Water Wheat     477 0.050  NA
+## 65    AZ      31             American Idiot Ale (2012)     764 0.055  45
+## 66    AZ     159                        Lumberyard IPA     355 0.061  NA
+## 67    AZ      31                         I.W.A. (2011)    1329 0.060  NA
+## 68    AZ     161                  Four Peaks Peach Ale    1585 0.042   9
+## 69    AZ      31              SanTan HefeWeizen (2010)     286 0.050  15
+## 70    AZ     161                         Sunbru Kölsch    2309 0.052  17
+## 71    AZ     508    Full Moon Belgian White Ale (2007)     132 0.085  NA
+## 72    AZ      31           Count Hopula (Vault Series)    2063 0.091  99
+## 73    AZ      31                    Devil’s Ale (2010)     285 0.055  45
+## 74    AZ     161                          Hop Knot IPA     358 0.067  47
+## 75    AZ     233                          Big Blue Van    2061 0.058  NA
+## 76    AZ      31                    SunSpot Golden Ale    1934 0.050  15
+## 77    AZ      31          Winter Warmer (Vault Series)    2073 0.095  25
+## 78    AZ      31                           Oktoberfest    1995 0.055  NA
+## 79    AZ     159                    Lumberyard Pilsner    1153 0.053  20
+## 80    AZ     508                      Desert Magic IPA     625 0.072  NA
+## 81    AZ     159                    Lumberyard Red Ale     125 0.058  NA
+## 82    AZ     537         Grand Canyon Sunset Amber Ale     143 0.054  NA
+## 83    AZ     549                      Liquid Amber Ale      64    NA  NA
+## 84    AZ     161                        Pumpkin Porter    1616 0.051  NA
+## 85    AZ     508                        Up River Light     326 0.042  NA
+## 86    AZ     508           Full Moon Belgian White Ale     768 0.085  NA
+## 87    AZ     537             Black Iron India Pale Ale     142    NA  NA
+## 88    CA     515                       Rich Man&#39;s IIPA     718 0.087  NA
+## 89    CA     289                      Saint Archer IPA    1867 0.068  66
+## 90    CA     535        High Country Pilsner (Current)     511 0.042  NA
+##                                  Style Ounces                      Brewery_Name             City
+## 1              American Pale Ale (APA)     12      Broken Tooth Brewing Company        Anchorage
+## 2                         American IPA     12       King Street Brewing Company        Anchorage
+## 3                        Irish Red Ale     12            Denali Brewing Company        Talkeetna
+## 4                         Scottish Ale     12       Kenai River Brewing Company         Soldotna
+## 5                       Czech Pilsener     12       King Street Brewing Company        Anchorage
+## 6                         American IPA     12      Midnight Sun Brewing Company        Anchorage
+## 7                         American IPA     12      Midnight Sun Brewing Company        Anchorage
+## 8                              Altbier     12           Alaskan Brewing Company           Juneau
+## 9                              Witbier     12      Midnight Sun Brewing Company        Anchorage
+## 10                        American IPA     12      Broken Tooth Brewing Company        Anchorage
+## 11                           Cream Ale     12      Broken Tooth Brewing Company        Anchorage
+## 12            American Amber / Red Ale     12       King Street Brewing Company        Anchorage
+## 13             American Pale Ale (APA)     12           Alaskan Brewing Company           Juneau
+## 14                  American Brown Ale     12      Midnight Sun Brewing Company        Anchorage
+## 15                        American IPA     12      Midnight Sun Brewing Company        Anchorage
+## 16                        American IPA     12       Kenai River Brewing Company         Soldotna
+## 17                    English Pale Ale     12     Sleeping Lady Brewing Company        Anchorage
+## 18                     Irish Dry Stout     12            Denali Brewing Company        Talkeetna
+## 19                        Scottish Ale     12       Kenai River Brewing Company         Soldotna
+## 20            American Amber / Red Ale     12      Broken Tooth Brewing Company        Anchorage
+## 21                 American Blonde Ale     12       Kenai River Brewing Company         Soldotna
+## 22                          Hefeweizen     12       King Street Brewing Company        Anchorage
+## 23                        American IPA     12            Denali Brewing Company        Talkeetna
+## 24                 American Blonde Ale     12       King Street Brewing Company        Anchorage
+## 25                 American Blonde Ale     12            Denali Brewing Company        Talkeetna
+## 26                        American IPA     12                   Straight to Ale       Huntsville
+## 27             American Pale Ale (APA)     12           Back Forty Beer Company          Gadsden
+## 28                  Milk / Sweet Stout     12                   Straight to Ale       Huntsville
+## 29                   English Brown Ale     12           Back Forty Beer Company          Gadsden
+## 30                  American Brown Ale     12       Good People Brewing Company       Birmingham
+## 31                        American IPA     12       Good People Brewing Company       Birmingham
+## 32                       Oatmeal Stout     12       Good People Brewing Company       Birmingham
+## 33             American Pale Ale (APA)     12       Good People Brewing Company       Birmingham
+## 34                              Kölsch     12                   Straight to Ale       Huntsville
+## 35      American Double / Imperial IPA     12       Good People Brewing Company       Birmingham
+## 36             American Pale Ale (APA)     12                Ozark Beer Company           Rogers
+## 37 Extra Special / Strong Bitter (ESB)     12 Core Brewing &amp; Distilling Company       Springdale
+## 38            American Amber / Red Ale     12 Core Brewing &amp; Distilling Company       Springdale
+## 39                       Oatmeal Stout     12 Core Brewing &amp; Distilling Company       Springdale
+## 40                    American Pilsner     12 Core Brewing &amp; Distilling Company       Springdale
+## 41              Fruit / Vegetable Beer     12            SanTan Brewing Company         Chandler
+## 42             American Pale Ale (APA)     12            SanTan Brewing Company         Chandler
+## 43            American Amber / Red Ale     12            SanTan Brewing Company         Chandler
+## 44                     American Porter     12            SanTan Brewing Company         Chandler
+## 45                Herbed / Spiced Beer     12            SanTan Brewing Company         Chandler
+## 46                        American IPA     12               Phoenix Ale Brewery          Phoenix
+## 47                        American IPA     12          Prescott Brewing Company         Prescott
+## 48                     American Porter     12            SanTan Brewing Company         Chandler
+## 49                        American IPA     12            SanTan Brewing Company         Chandler
+## 50                        American IPA     12            SanTan Brewing Company         Chandler
+## 51            American Amber / Red Ale     12          Mogollon Brewing Company        Flagstaff
+## 52                          Hefeweizen     12            SanTan Brewing Company         Chandler
+## 53            American Amber / Red Ale     12            SanTan Brewing Company         Chandler
+## 54                         Belgian IPA     12            SanTan Brewing Company         Chandler
+## 55                        American IPA     12            Barrio Brewing Company           Tucson
+## 56                              Kölsch     12        Four Peaks Brewing Company            Tempe
+## 57                 American Blonde Ale     12            Barrio Brewing Company           Tucson
+## 58                                &lt;NA&gt;     12        Four Peaks Brewing Company            Tempe
+## 59                          Hefeweizen     12          Mudshark Brewing Company Lake Havasu City
+## 60             American Pale Ale (APA)     12        Lumberyard Brewing Company        Flagstaff
+## 61                    American Pilsner     12      Grand Canyon Brewing Company         Williams
+## 62                     American Porter     16       Borderlands Brewing Company           Tucson
+## 63                        Scottish Ale     12        Four Peaks Brewing Company            Tempe
+## 64             American Pale Wheat Ale     12      Grand Canyon Brewing Company         Williams
+## 65             American Pale Ale (APA)     12            SanTan Brewing Company         Chandler
+## 66                        American IPA     12        Lumberyard Brewing Company        Flagstaff
+## 67             American Pale Wheat Ale     12            SanTan Brewing Company         Chandler
+## 68              Fruit / Vegetable Beer     12        Four Peaks Brewing Company            Tempe
+## 69                          Hefeweizen     12            SanTan Brewing Company         Chandler
+## 70                              Kölsch     12        Four Peaks Brewing Company            Tempe
+## 71                             Witbier     12          Mudshark Brewing Company Lake Havasu City
+## 72      American Double / Imperial IPA     16            SanTan Brewing Company         Chandler
+## 73             American Pale Ale (APA)     12            SanTan Brewing Company         Chandler
+## 74                        American IPA     12        Four Peaks Brewing Company            Tempe
+## 75              Fruit / Vegetable Beer     16  College Street Brewhouse and Pub Lake Havasu City
+## 76                 American Blonde Ale     12            SanTan Brewing Company         Chandler
+## 77                       Winter Warmer     16            SanTan Brewing Company         Chandler
+## 78                Märzen / Oktoberfest     12            SanTan Brewing Company         Chandler
+## 79                    American Pilsner     12        Lumberyard Brewing Company        Flagstaff
+## 80                        American IPA     12          Mudshark Brewing Company Lake Havasu City
+## 81            American Amber / Red Ale     12        Lumberyard Brewing Company        Flagstaff
+## 82            American Amber / Red Ale     12      Grand Canyon Brewing Company         Williams
+## 83            American Amber / Red Ale     12          Prescott Brewing Company         Prescott
+## 84                     American Porter     12        Four Peaks Brewing Company            Tempe
+## 85                         Light Lager     12          Mudshark Brewing Company Lake Havasu City
+## 86                             Witbier     12          Mudshark Brewing Company Lake Havasu City
+## 87                        American IPA     12      Grand Canyon Brewing Company         Williams
+## 88      American Double / Imperial IPA     16          Monkey Paw Pub &amp; Brewery        San Diego
+## 89                        American IPA     12              Saint Archer Brewery        San Diego
+## 90                     German Pilsener     12           Mammoth Brewing Company    Mammoth Lakes
+##       State.y
+## 1      Alaska
+## 2      Alaska
+## 3      Alaska
+## 4      Alaska
+## 5      Alaska
+## 6      Alaska
+## 7      Alaska
+## 8      Alaska
+## 9      Alaska
+## 10     Alaska
+## 11     Alaska
+## 12     Alaska
+## 13     Alaska
+## 14     Alaska
+## 15     Alaska
+## 16     Alaska
+## 17     Alaska
+## 18     Alaska
+## 19     Alaska
+## 20     Alaska
+## 21     Alaska
+## 22     Alaska
+## 23     Alaska
+## 24     Alaska
+## 25     Alaska
+## 26    Alabama
+## 27    Alabama
+## 28    Alabama
+## 29    Alabama
+## 30    Alabama
+## 31    Alabama
+## 32    Alabama
+## 33    Alabama
+## 34    Alabama
+## 35    Alabama
+## 36   Arkansas
+## 37   Arkansas
+## 38   Arkansas
+## 39   Arkansas
+## 40   Arkansas
+## 41    Arizona
+## 42    Arizona
+## 43    Arizona
+## 44    Arizona
+## 45    Arizona
+## 46    Arizona
+## 47    Arizona
+## 48    Arizona
+## 49    Arizona
+## 50    Arizona
+## 51    Arizona
+## 52    Arizona
+## 53    Arizona
+## 54    Arizona
+## 55    Arizona
+## 56    Arizona
+## 57    Arizona
+## 58    Arizona
+## 59    Arizona
+## 60    Arizona
+## 61    Arizona
+## 62    Arizona
+## 63    Arizona
+## 64    Arizona
+## 65    Arizona
+## 66    Arizona
+## 67    Arizona
+## 68    Arizona
+## 69    Arizona
+## 70    Arizona
+## 71    Arizona
+## 72    Arizona
+## 73    Arizona
+## 74    Arizona
+## 75    Arizona
+## 76    Arizona
+## 77    Arizona
+## 78    Arizona
+## 79    Arizona
+## 80    Arizona
+## 81    Arizona
+## 82    Arizona
+## 83    Arizona
+## 84    Arizona
+## 85    Arizona
+## 86    Arizona
+## 87    Arizona
+## 88 California
+## 89 California
+## 90 California
+##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 2312 rows ]</code></pre>
+<pre class="r"><code>colnames(bbdf_map)[1] = &quot;StateCode&quot;
+colnames(bbdf_map)[11] = &quot;State&quot;
+
+bbdf_map$region &lt;- tolower(bbdf_map$State)
+bbdf_map_summary = bbdf_map %&gt;% group_by(region) %&gt;% summarize(cnt = n(), meanABV = mean(ABV, na.rm = TRUE), meanIBU = mean(IBU,  na.rm = TRUE))
+
+
+# Getting population data from the ACS for 5 year ( latest year is 2019)
+v19 &lt;- load_variables(2019, &quot;acs5&quot;)
+pop2019 = get_acs(geography = &quot;state&quot;, variable = &quot;B01003_001&quot;, year = 2019)</code></pre>
+<pre><code>## Getting data from the 2015-2019 5-year ACS</code></pre>
+<pre class="r"><code># creating a region and a per 100K count for population estimate
+pop2019$region = tolower(pop2019$NAME)
+pop2019$per100k = pop2019$estimate / 100000
+
+
+bbdf_map_summary2 = bbdf_map_summary %&gt;% merge(pop2019[, c(&quot;region&quot;,&quot;per100k&quot;)], by=&quot;region&quot;, all.x=T)
+
+bbdf_map_summary2$perCapita = bbdf_map_summary2$cnt / bbdf_map_summary2$per100k 
+
+states &lt;- map_data(&quot;state&quot;)
+map.df &lt;- bbdf_map_summary2 %&gt;% merge(states, by=&quot;region&quot;, all.x=T)
+
+map.df &lt;- map.df[order(map.df$order),]
+
+# below is the code for creating the Mean ABV by State
+# ------
+
+ggplot(map.df, aes(x=long,y=lat,group=group))+
+  geom_polygon(aes(fill= meanABV))+
+  geom_path()+ 
+  scale_fill_gradientn(colours=rev(heat.colors(10)),na.value=&quot;grey90&quot;)+ggtitle(&quot;Mean ABV by State&quot;)+
+  coord_map()</code></pre>
+<pre><code>## Warning: Removed 2 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code># ------
+
+# below is the code for creating the Other Ales heat map
+
+# ----
+
+ggplot(map.df, aes(x=long,y=lat,group=group))+
+  geom_polygon(aes(fill=meanIBU))+
+  geom_path()+ 
+  scale_fill_gradientn(colours=rev(heat.colors(10)),na.value=&quot;grey90&quot;)+ggtitle(&quot; Mean IBU by State&quot;)+
+  coord_map()</code></pre>
+<pre><code>## Warning: Removed 2 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<pre class="r"><code>#--- 
+
+
+
+# below is the code for creating the Beer Count heat map
+
+# ----
+
+ggplot(map.df, aes(x=long,y=lat,group=group))+
+  geom_polygon(aes(fill=cnt))+
+  geom_path()+ 
+  scale_fill_gradientn(colours=rev(heat.colors(10)),na.value=&quot;grey90&quot;)+ggtitle(&quot;Beer Count by State&quot;)+
+  coord_map()</code></pre>
+<pre><code>## Warning: Removed 2 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
+<pre class="r"><code># 
+
+
+# below is the code for creating the Beer Count heat map
+
+# ----
+
+ggplot(map.df, aes(x=long,y=lat,group=group))+
+  geom_polygon(aes(fill=perCapita))+
+  geom_path()+ 
+  scale_fill_gradientn(colours=rev(heat.colors(10)),na.value=&quot;grey90&quot;)+ggtitle(&quot;Per Capita by State&quot;)+
+  coord_map()</code></pre>
+<pre><code>## Warning: Removed 2 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="DEA1_Joseph_Yip_files/figure-html/unnamed-chunk-10-4.png" width="672" /></p>
+<pre class="r"><code># </code></pre>
+</div>
+<div id="answer.-our-heat-map-tool-can-determine-where-you-have-the-greatest-white-space-opportunities-where-we-can-customize-the-style-of-beer-by-state.-the-heat-maps-identifies-opportunities-by-state-for-budweiser-to-expand-it-portfolio-based-on-of-beer-sku-per-100000s-capita.-in-addition-the-heat-map-can-customize-by-style-of-beer-based-on-the-abv-and-ibu-median-preference-to-optimize-consumer-preference-in-each-state." class="section level3">
+<h3>9 Answer. Our Heat map tool can determine where you have the greatest white space opportunities where we can customize the style of beer by state. The heat maps identifies opportunities by state for Budweiser to expand it portfolio based on # of Beer Sku per 100,000s capita. In addition, the heat map can customize, by style of beer, based on the ABV and IBU median preference to optimize consumer preference in each state.</h3>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
